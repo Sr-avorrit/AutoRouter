@@ -2,7 +2,7 @@ import files, connector, Commands
 
 
 def start():
-    print('\033[1:34mWelcome to AutoRouter v0.0a1\033[0m\n')
+    print('\033[1:34mWelcome to AutoRouter v0.0pa1\033[0m\n')
     if files.readYml('R1.yml') == 0:
         connections = connector.getConnectionData()
         if connections != 1:
