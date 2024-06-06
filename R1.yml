@@ -5,6 +5,4 @@ password: admin
 kind: mkt
 hostname: R1
 domain-lookup: false
-interface ether3:
-  ip-address: 192.168.10.254
-  mask: 255.255.255.0
+
