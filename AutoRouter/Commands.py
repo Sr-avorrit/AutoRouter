@@ -1,4 +1,4 @@
-import Exceptions
+import AutoRouter.Exceptions as Exceptions
 
 data = {}
 commands = {

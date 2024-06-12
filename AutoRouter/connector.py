@@ -1,7 +1,7 @@
-import Commands
+import AutoRouter.Commands as Commands
 import paramiko
-from Exceptions import *
-from Information import *
+from AutoRouter.Exceptions import *
+from AutoRouter.Information import *
 
 def getConnectionData():
     connectionInfo = {}
