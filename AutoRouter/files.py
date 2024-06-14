@@ -1,23 +1,25 @@
 import yaml
 import AutoRouter.Commands as Commands
-import keyboard
 from AutoRouter.Exceptions import *
 import os
-from time import sleep
 
 
-
+key_pressed = ''
 req_keys = ['host', 'username', 'kind']
 
-def readYml(file_name):
+def readYml(file_path):
     try:
-        file = open(file_name, 'r')
+        file = open(file_path, 'r')
         Commands.data = yaml.safe_load(file)
         file.close()
-        return checkYml(file_name)
+        if os.stat(file_path).st_size == 0:
+            raise EmptyFileException
+        return checkYml(file_path)
+    except EmptyFileException:
+        EmptyFileError(os.path.basename(file_path))
     except Exception:
-        FileError(file_name)
-    return 0
+        FileError(os.path.basename(file_path))
+    return 1
 
 
 def checkYml(file_name):
@@ -30,27 +32,3 @@ def checkYml(file_name):
     if 'password' not in Commands.data.keys():
         Commands.data['password'] = ''
     return 0
-
-
-def position_up():
-    print('Hola\n\n')
-
-
-
-def selectFile():
-    position = 0
-    path = 'YML_Files'
-    max_len = 20
-    files = [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))]
-    print('\033[1mSelect File:\033[0m\n')
-    for file in files:
-        if len(file) > max_len:
-            max_len = len(file)
-        print(file)
-    print(f'\033[{len(files)}A\033[46m{files[position]}'+' '*(max_len-len(files[position]))+'\033[0m', end='')
-    print()
-    keyboard.on_press_key("up arrow", lambda: print('Hola'))
-    while True:
-        continue
-
-
